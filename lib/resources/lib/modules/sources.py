@@ -1174,12 +1174,7 @@ class sources:
             if xbmc.getCondVisibility('System.HasAddon(%s)' % 'script.module.lambdascrapers') and not scraperSetting == 'Default':
                 from lambdascrapers import sources
                 self.sourceDict = sources()
-                scrapers = [i[0] for i in self.sourceDict]
-                try:
-                    self.module_name = 'Yoda' if scrapers[0].split('_')[1].lower() == 'yoda' else \
-                                          'Placenta' if scrapers[0].split('_')[1].lower() == 'plac' else \
-                                          'Incursion' if scrapers[0].split('_')[1].lower() == 'incur' else 'Default'
-                except: self.module_name = 'All'
+                self.module_name = control.addon('script.module.lambdascrapers').getSetting('module.provider')                 
             else:
                 from resources.lib.sources import sources
                 self.sourceDict = sources()
