@@ -66,7 +66,7 @@ class movies:
         self.person_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&role=%s&sort=year,desc&count=40&start=1'
         self.keyword_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie,documentary&num_votes=100,&release_date=,date[0]&keywords=%s&sort=moviemeter,asc&count=40&start=1'
         self.oscars_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&groups=oscar_best_picture_winners&sort=year,desc&count=40&start=1'
-        self.theaters_link = 'http://www.imdb.com/search/title?title_type=feature&num_votes=1000,&release_date=date[365],date[0]&sort=release_date_us,desc&count=40&start=1'
+        self.theaters_link = 'http://www.imdb.com/search/title?title_type=feature&num_votes=1000,&release_date=date[120],date[0]&sort=moviemeter,asc&count=40&start=1'
         self.year_link = 'http://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&year=%s,%s&sort=moviemeter,asc&count=40&start=1'
 
         if self.hidecinema == 'true':
