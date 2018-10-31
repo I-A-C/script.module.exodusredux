@@ -1,8 +1,7 @@
 Exodus Redux Module Changelog:
-1.0.6 
+1.0.6 - Cleanup module selection
 - Fix "In Theaters"
 - Fix Extended Info on TV Shows
-- Cleanup module selection
 1.0.5 - 
 1.0.4 - 
 1.0.3 - 
