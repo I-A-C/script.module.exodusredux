@@ -60,7 +60,7 @@ class navigator:
         if (traktIndicators == True and not control.setting('tv.widget.alt') == '0') or (traktIndicators == False and not control.setting('tv.widget') == '0'):
             self.addDirectoryItem(32006, 'tvWidget', 'latest-episodes.png', 'DefaultRecentlyAddedEpisodes.png')
 
-        self.addDirectoryItem(32007, 'channels', 'channels.png', 'DefaultMovies.png')
+#        self.addDirectoryItem(32007, 'channels', 'channels.png', 'DefaultMovies.png')
         if not control.setting('furk.api') == '':
             self.addDirectoryItem('Furk.net', 'furkNavigator', 'movies.png', 'movies.png')
         self.addDirectoryItem(32008, 'toolNavigator', 'tools.png', 'DefaultAddonProgram.png')
