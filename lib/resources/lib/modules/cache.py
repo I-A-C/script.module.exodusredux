@@ -305,3 +305,18 @@ def _find_cache_version():
             return True
         else: return False
     except: return False
+
+def _find_cache_versionAlt(): #Added to keep track of plugin.video.exodusredux version
+
+    import os
+    versionFile = os.path.join(control.dataPath, 'cache.v2')
+    try: 
+        with open(versionFile, 'rb') as fh: oldVersion = fh.read()
+    except: oldVersion = '0'
+    try:
+        curVersion = control.addon('plugin.video.exodusredux').getAddonInfo('version')
+        if oldVersion != curVersion: 
+            with open(versionFile, 'wb') as fh: fh.write(curVersion)
+            return True
+        else: return False
+    except: return False

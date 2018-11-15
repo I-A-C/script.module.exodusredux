@@ -18,7 +18,7 @@
 '''
 
 
-import os,sys,urlparse
+import os,sys,urllib2,urlparse
 import xbmc, xbmcaddon, xbmcgui
 
 from resources.lib.modules import control
@@ -43,7 +43,7 @@ class navigator:
     HOMEPATH      = xbmc.translatePath('special://home/')
     ADDONSPATH    = os.path.join(HOMEPATH, 'addons')
     THISADDONPATH = os.path.join(ADDONSPATH, ADDON_ID)
-    NEWSFILE      = 'https://raw.githubusercontent.com/I-A-C/ExodusReduxRepo/master/README.md'
+    NEWSFILE      = 'https://raw.githubusercontent.com/I-A-C/plugin.video.exodusredux/master/newsinfo.txt'
     LOCALNEWS     = os.path.join(THISADDONPATH, 'newsinfo.txt')
 
     def root(self):
@@ -81,10 +81,32 @@ class navigator:
         self.endDirectory()
 
 # News and Info
+    def news(self):
+            message=self.open_news_url(self.NEWSFILE)
+            r = open(self.LOCALNEWS)
+            compfile = r.read()       
+            if len(message)>1:
+                    if compfile == message:pass
+                    else:
+                            text_file = open(self.LOCALNEWS, "w")
+                            text_file.write(message)
+                            text_file.close()
+                            compfile = message
+            self.showText('[B]Updates and Information[/B]', compfile)
+        
+    def open_news_url(self, url):
+            req = urllib2.Request(url)
+            req.add_header('User-Agent', 'klopp')
+            response = urllib2.urlopen(req)
+            link=response.read()
+            response.close()
+            print link
+            return link
+
     def news_local(self):
             r = open(self.LOCALNEWS)
             compfile = r.read()
-            self.showText('[B][COLOR red]Information and Updates[/COLOR][/B]', compfile)
+            self.showText('[B]Updates and Information[/B]', compfile)
 
     def showText(self, heading, text):
         id = 10147
