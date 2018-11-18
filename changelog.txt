@@ -1,4 +1,6 @@
 Exodus Redux Module Changelog:
+1.0.9
+- New Trakt.tv API key
 1.0.8
 - Resume fix for Kodi 18
 - Removed Channels 
