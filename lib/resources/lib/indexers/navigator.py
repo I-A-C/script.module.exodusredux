@@ -381,6 +381,7 @@ class navigator:
         if control.yesnoDialog(control.lang(32056).encode('utf-8'), '', ''):
             control.setSetting('tvsearch', '')
             control.setSetting('moviesearch', '')
+            control.infoDialog(control.lang(32057).encode('utf-8'), sound=True, icon='INFO')
             control.refresh()
 
     def clearCacheAll(self):
