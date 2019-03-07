@@ -1,4 +1,6 @@
 Exodus Redux Module Changelog:
+2.0.0
+- Rebased
 1.0.9
 - New Trakt.tv API key
 1.0.8
