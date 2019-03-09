@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Covenant Add-on
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -39,7 +37,6 @@ action = params.get('action')
 class tvshows:
     def __init__(self):
         self.list = []
-
         self.imdb_link = 'https://www.imdb.com'
         self.trakt_link = 'https://api.trakt.tv'
         self.tvmaze_link = 'https://www.tvmaze.com'
@@ -135,7 +132,6 @@ class tvshows:
             elif u in self.tvmaze_link:
                 self.list = cache.get(self.tvmaze_list, 168, url)
                 if idx == True: self.worker()
-
 
             if idx == True and create_directory == True: self.tvshowDirectory(self.list)
             return self.list
@@ -290,7 +286,6 @@ class tvshows:
         self.addDirectory(self.list)
         return self.list
 
-
     def languages(self):
         languages = [
         ('Arabic', 'ar'),
@@ -329,14 +324,12 @@ class tvshows:
         self.addDirectory(self.list)
         return self.list
 
-
     def certifications(self):
         certificates = ['TV-G', 'TV-PG', 'TV-14', 'TV-MA']
 
         for i in certificates: self.list.append({'name': str(i), 'url': self.certification_link % str(i).replace('-', '_').lower(), 'image': 'certificates.png', 'action': 'tvshows'})
         self.addDirectory(self.list)
         return self.list
-
 
     def persons(self, url):
         if url == None:
@@ -347,7 +340,6 @@ class tvshows:
         for i in range(0, len(self.list)): self.list[i].update({'action': 'tvshows'})
         self.addDirectory(self.list)
         return self.list
-
 
     def userlists(self):
         try:
@@ -387,7 +379,6 @@ class tvshows:
         for i in range(0, len(self.list)): self.list[i].update({'image': 'userlists.png', 'action': 'tvshows'})
         self.addDirectory(self.list)
         return self.list
-
 
     def trakt_list(self, url, user):
         try:
@@ -484,7 +475,6 @@ class tvshows:
 
         return self.list
 
-
     def trakt_user_list(self, url, user):
         try:
             items = trakt.getTraktAsJson(url)
@@ -508,7 +498,6 @@ class tvshows:
 
         self.list = sorted(self.list, key=lambda k: utils.title_key(k['name']))
         return self.list
-
 
     def imdb_list(self, url):
         try:
@@ -606,7 +595,6 @@ class tvshows:
 
         return self.list
 
-
     def imdb_person_list(self, url):
         try:
             result = client.request(url)
@@ -664,7 +652,6 @@ class tvshows:
 
         self.list = sorted(self.list, key=lambda k: utils.title_key(k['name']))
         return self.list
-
 
     def tvmaze_list(self, url):
         try:
@@ -773,7 +760,6 @@ class tvshows:
         except:
             return
 
-
     def worker(self, level=1):
         self.meta = []
         total = len(self.list)
@@ -799,7 +785,6 @@ class tvshows:
 
         if self.fanart_tv_user == '':
             for i in self.list: i.update({'clearlogo': '0', 'clearart': '0'})
-
 
     def super_info(self, i):
         try:
@@ -834,7 +819,6 @@ class tvshows:
 
                 if tvdb == '': tvdb = '0'
 
-
             if tvdb == '0':
                 url = self.tvdb_by_query % (urllib.quote_plus(self.list[i]['title']))
 
@@ -851,7 +835,6 @@ class tvshows:
                 tvdb = client.parseDOM(tvdb, 'seriesid')[0]
 
                 if tvdb == '': tvdb = '0'
-
 
             url = self.tvdb_info_link % tvdb
             item = client.request(url, timeout='10')
@@ -1017,7 +1000,6 @@ class tvshows:
         except:
             pass
 
-
     def tvshowDirectory(self, items):
         if items == None or len(items) == 0: control.idle() ; sys.exit()
 
@@ -1078,7 +1060,6 @@ class tvshows:
                     else: meta.update({'playcount': 0, 'overlay': 6})
                 except:
                     pass
-
 
                 if flatten == True:
                     url = '%s?action=episodes&tvshowtitle=%s&year=%s&imdb=%s&tvdb=%s' % (sysaddon, systitle, year, imdb, tvdb)
@@ -1173,7 +1154,6 @@ class tvshows:
         control.content(syshandle, 'tvshows')
         control.directory(syshandle, cacheToDisc=True)
         views.setView('tvshows', {'skin.estuary': 55, 'skin.confluence': 500})
-
 
     def addDirectory(self, items, queue=False):
         if items == None or len(items) == 0: control.idle() ; sys.exit()

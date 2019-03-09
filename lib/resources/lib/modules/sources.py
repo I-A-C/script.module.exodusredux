@@ -25,7 +25,8 @@ import sys
 import time
 import urllib
 import urlparse
-import lambdascrapers
+#import lambdascrapers
+import openscrapers
 
 from resources.lib.modules import (cleantitle, client, control, debrid,
                                    log_utils, source_utils, trakt, tvmaze,
@@ -1451,7 +1452,8 @@ class sources:
         self.metaProperty = 'plugin.video.exodusredux.container.meta'
 
 	#from resources.lib.sources import sources
-	from lambdascrapers import sources
+#	from lambdascrapers import sources
+	from openscrapers import sources
 
         self.sourceDict = sources()
 

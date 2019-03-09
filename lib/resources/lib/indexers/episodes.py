@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Covenant Add-on
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -164,7 +162,6 @@ class seasons:
             item = result[0] ; item2 = result2[0]
 
             episodes = [i for i in result if '<EpisodeNumber>' in i]
-
             if control.setting('tv.specials') == 'true':
                 episodes = [i for i in episodes]
             else:
@@ -432,7 +429,6 @@ class seasons:
 
         addToLibrary = control.lang(32551).encode('utf-8')
 
-
         for i in items:
             try:
                 label = '%s %s' % (labelMenu, i['season'])
@@ -586,7 +582,6 @@ class episodes:
 
     def calendar(self, url):
         try:
-
             try: url = getattr(self, url + '_link')
             except: pass
 

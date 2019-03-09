@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Covenant Add-on
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -14,7 +12,7 @@
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 '''
 
 from resources.lib.modules import trakt
@@ -75,7 +73,7 @@ class movies:
         self.certification_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&num_votes=100,&production_status=released&certificates=us:%s&sort=moviemeter,asc&count=40&start=1'
         self.boxoffice_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&production_status=released&sort=boxoffice_gross_us,desc&count=40&start=1'
 
-        self.added_link  = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=500,&production_status=released&release_date=%s,%s&sort=release_date,desc&count=20&start=1' % (self.year_date, self.today_date)
+        self.added_link = 'https://www.imdb.com/search/title?title_type=feature,tv_movie&languages=en&num_votes=500,&production_status=released&release_date=%s,%s&sort=release_date,desc&count=20&start=1' % (self.year_date, self.today_date)
         self.trending_link = 'https://api.trakt.tv/movies/trending?limit=40&page=1'
         self.traktlists_link = 'https://api.trakt.tv/users/me/lists'
         self.traktlikedlists_link = 'https://api.trakt.tv/users/likes/lists?limit=1000000'
@@ -131,12 +129,10 @@ class movies:
                 self.list = cache.get(self.imdb_list, 24, url)
                 if idx == True: self.worker()
 
-
             if idx == True and create_directory == True: self.movieDirectory(self.list)
             return self.list
         except:
             pass
-
 
     def widget(self):
         setting = control.setting('movie.widget')
@@ -228,7 +224,6 @@ class movies:
         self.addDirectory(self.list)
         return self.list
 
-
     def languages(self):
         languages = [
             ('Arabic', 'ar'),
@@ -269,7 +264,6 @@ class movies:
         self.addDirectory(self.list)
         return self.list
 
-
     def certifications(self):
         certificates = ['G', 'PG', 'PG-13', 'R', 'NC-17']
 
@@ -277,14 +271,12 @@ class movies:
         self.addDirectory(self.list)
         return self.list
 
-
     def years(self):
         year = (self.datetime.strftime('%Y'))
 
         for i in range(int(year)-0, 1900, -1): self.list.append({'name': str(i), 'url': self.year_link % (str(i), str(i)), 'image': 'years.png', 'action': 'movies'})
         self.addDirectory(self.list)
         return self.list
-
 
     def persons(self, url):
         if url == None:
@@ -295,7 +287,6 @@ class movies:
         for i in range(0, len(self.list)): self.list[i].update({'action': 'movies'})
         self.addDirectory(self.list)
         return self.list
-
 
     def userlists(self):
         try:
@@ -335,7 +326,6 @@ class movies:
         for i in range(0, len(self.list)): self.list[i].update({'image': 'userlists.png', 'action': 'movies'})
         self.addDirectory(self.list, queue=True)
         return self.list
-
 
     def trakt_list(self, url, user):
         try:
@@ -426,7 +416,6 @@ class movies:
 
         return self.list
 
-
     def trakt_user_list(self, url, user):
         try:
             items = trakt.getTraktAsJson(url)
@@ -450,7 +439,6 @@ class movies:
 
         self.list = sorted(self.list, key=lambda k: utils.title_key(k['name']))
         return self.list
-
 
     def imdb_list(self, url):
         try:
@@ -585,7 +573,6 @@ class movies:
 
         return self.list
 
-
     def imdb_person_list(self, url):
         try:
             result = client.request(url)
@@ -616,7 +603,6 @@ class movies:
 
         return self.list
 
-
     def imdb_user_list(self, url):
         try:
             result = client.request(url)
@@ -642,7 +628,6 @@ class movies:
 
         self.list = sorted(self.list, key=lambda k: utils.title_key(k['name']))
         return self.list
-
 
     def worker(self, level=1):
         self.meta = []
@@ -671,7 +656,6 @@ class movies:
 
         if self.fanart_tv_user == '':
             for i in self.list: i.update({'clearlogo': '0', 'clearart': '0'})
-
 
     def super_info(self, i):
         try:
@@ -830,7 +814,6 @@ class movies:
         except:
             pass
 
-
     def movieDirectory(self, items):
         if items == None or len(items) == 0: control.idle() ; sys.exit()
 
@@ -896,7 +879,6 @@ class movies:
 
                 path = '%s?action=play&title=%s&year=%s&imdb=%s' % (sysaddon, systitle, year, imdb)
 
-
                 cm = []
 
                 cm.append(('Find similar',
@@ -944,7 +926,6 @@ class movies:
                 if 'clearart' in i and not i['clearart'] == '0':
                     art.update({'clearart': i['clearart']})
 
-
                 if settingFanart == 'true' and 'fanart2' in i and not i['fanart2'] == '0':
                     item.setProperty('Fanart_Image', i['fanart2'])
                 elif settingFanart == 'true' and 'fanart' in i and not i['fanart'] == '0':
@@ -983,7 +964,6 @@ class movies:
         control.content(syshandle, 'movies')
         control.directory(syshandle, cacheToDisc=True)
         views.setView('movies', {'skin.estuary': 55, 'skin.confluence': 500})
-
 
     def addDirectory(self, items, queue=False):
         if items == None or len(items) == 0: control.idle() ; sys.exit()

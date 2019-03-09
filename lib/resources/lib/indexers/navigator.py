@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 '''
-    Covenant Add-on
-
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -28,7 +26,6 @@ sysaddon = sys.argv[0] ; syshandle = int(sys.argv[1])
 artPath = control.artPath() ; addonFanart = control.addonFanart()
 
 imdbCredentials = False if control.setting('imdb.user') == '' else True
-
 traktCredentials = trakt.getTraktCredentialsInfo()
 traktIndicators = trakt.getTraktIndicatorsInfo()
 
@@ -46,7 +43,13 @@ class navigator:
     def root(self):
         self.addDirectoryItem(32001, 'movieNavigator', 'movies.png', 'DefaultMovies.png')
         self.addDirectoryItem(32002, 'tvNavigator', 'tvshows.png', 'DefaultTVShows.png')
-#        self.addDirectoryItem(32007, 'channels', 'channels.png', 'DefaultMovies.png')
+
+        if self.getMenuEnabled('navi.docu') == True:
+            self.addDirectoryItem(32631, 'docuHeaven', 'movies.png', 'DefaultMovies.png')
+
+        if self.getMenuEnabled('navi.channels') == True:
+            self.addDirectoryItem(32007, 'channels', 'channels.png', 'DefaultMovies.png')
+
         if not control.setting('lists.widget') == '0':
             self.addDirectoryItem(32003, 'mymovieNavigator', 'mymovies.png', 'DefaultVideoPlaylists.png')
             self.addDirectoryItem(32004, 'mytvNavigator', 'mytvshows.png', 'DefaultVideoPlaylists.png')
@@ -62,7 +65,7 @@ class navigator:
 
         self.addDirectoryItem(32010, 'searchNavigator', 'search.png', 'DefaultAddonProgram.png')
         self.addDirectoryItem(32008, 'toolNavigator', 'tools.png', 'DefaultAddonProgram.png')
-        self.addDirectoryItem('Scraper Settings', 'lambdascraperSettings&query=0.0', 'tools.png', 'DefaultAddonProgram.png')
+        self.addDirectoryItem('Scraper Settings', 'openscrapersSettings&query=0.0', 'tools.png', 'DefaultAddonProgram.png')
         
         downloads = True if control.setting('downloads') == 'true' and (len(control.listDir(control.setting('movie.download.path'))[0]) > 0 or len(control.listDir(control.setting('tv.download.path'))[0]) > 0) else False
         if downloads == True:
@@ -165,7 +168,6 @@ class navigator:
 
         self.endDirectory()
 
-
     def mymovies(self, lite=False):
         self.accountCheck()
 
@@ -200,7 +202,6 @@ class navigator:
 
         self.endDirectory()
 
-
     def tvshows(self, lite=False):
         if self.getMenuEnabled('navi.tvGenres') == True:
             self.addDirectoryItem(32011, 'tvGenres', 'genres.png', 'DefaultTVShows.png')
@@ -232,12 +233,9 @@ class navigator:
         if lite == False:
             if not control.setting('lists.widget') == '0':
                 self.addDirectoryItem(32004, 'mytvliteNavigator', 'mytvshows.png', 'DefaultVideoPlaylists.png')
-
             self.addDirectoryItem(32028, 'tvPerson', 'people-search.png', 'DefaultTVShows.png')
             self.addDirectoryItem(32010, 'tvSearch', 'search.png', 'DefaultTVShows.png')
-
         self.endDirectory()
-
 
     def mytvshows(self, lite=False):
         self.accountCheck()
@@ -367,13 +365,11 @@ class navigator:
         except:
             return
 
-
     def accountCheck(self):
         if traktCredentials == False and imdbCredentials == False:
             control.idle()
             control.infoDialog(control.lang(32042).encode('utf-8'), sound=True, icon='WARNING')
             sys.exit()
-
 
     def infoCheck(self, version):
         try:
@@ -381,7 +377,6 @@ class navigator:
             return '1'
         except:
             return '1'
-
 
     def clearCache(self):
         control.idle()
