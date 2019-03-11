@@ -1,4 +1,6 @@
 Exodus Redux Module Changelog:
+2.0.2
+- Fix Debrid Only playback
 2.0.1
 - Replaced Lambdascraper with Openscrapers
 2.0.0
