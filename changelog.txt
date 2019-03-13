@@ -1,4 +1,6 @@
 Exodus Redux Module Changelog:
+2.0.3
+- Fix Trakt and IMDb lists
 2.0.2
 - Fix Debrid Only playback
 2.0.1
