@@ -37,9 +37,9 @@ action = params.get('action')
 class tvshows:
     def __init__(self):
         self.list = []
-        self.imdb_link = 'https://www.imdb.com'
-        self.trakt_link = 'https://api.trakt.tv'
-        self.tvmaze_link = 'https://www.tvmaze.com'
+        self.imdb_link = 'http://www.imdb.com'
+        self.trakt_link = 'http://api.trakt.tv'
+        self.tvmaze_link = 'http://www.tvmaze.com'
         self.logo_link = 'https://i.imgur.com/'
         self.tvdb_key = control.setting('tvdb.user')
         if self.tvdb_key == '' or self.tvdb_key == None:
@@ -85,8 +85,8 @@ class tvshows:
         self.imdblists_link = 'https://www.imdb.com/user/ur%s/lists?tab=all&sort=mdfd&order=desc&filter=titles' % self.imdb_user
         self.imdblist_link = 'https://www.imdb.com/list/%s/?view=detail&sort=alpha,asc&title_type=tvSeries,tvMiniSeries&start=1'
         self.imdblist2_link = 'https://www.imdb.com/list/%s/?view=detail&sort=date_added,desc&title_type=tvSeries,tvMiniSeries&start=1'
-        self.imdbwatchlist_link = 'https://www.imdb.com/user/ur%s/watchlist?sort=alpha,asc' % self.imdb_user
-        self.imdbwatchlist2_link = 'https://www.imdb.com/user/ur%s/watchlist?sort=date_added,desc' % self.imdb_user
+        self.imdbwatchlist_link = 'http://www.imdb.com/user/ur%s/watchlist?sort=alpha,asc' % self.imdb_user
+        self.imdbwatchlist2_link = 'http://www.imdb.com/user/ur%s/watchlist?sort=date_added,desc' % self.imdb_user
 
 
     def get(self, url, idx=True, create_directory=True):
